@@ -3,7 +3,6 @@
 
 # Original source from
 # https://github.com/Chris-Johnston/CSSBot_Py
-
 # using the development version from the rewrite branch
 # https://github.com/Rapptz/discord.py/tree/rewrite see the readme file for more information
 # python3 -m pip install -r requirements.txt
@@ -32,10 +31,11 @@ print('using discordpy version', discord.__version__)
 
 # the command prefix should be something unique, many bots already use !, ., and / for their prefixes
 # you can do any string, 'hey you stupid bot ' would totally work
-client = commands.Bot(command_prefix='>>', description='https://github.com/UWB-ACM/CSSBot_Py')
+client = commands.Bot(command_prefix='>', description='https://github.com/UWB-ACM/CSSBot_Py')
+client2 = discord.Client()
 
 # this is where extensions are added by default
-default_extensions = ['cogs.basic']
+default_extensions = ['cogs.basic', 'cogs.rockpaperscissors', 'cogs.info']
 
 
 if __name__ == '__main__':
@@ -52,9 +52,17 @@ async def on_ready():
     # print some stuff when the bot goes online
     print('Logged in ' + str(client.user.name) + ' - ' +
           str(client.user.id) + '\n' + 'Version ' + str(discord.__version__))
+    print('Bot version: 0.0.1')
     # a good way to let users know how to use the bot is by providing them with a help method
     # only way this can do them any good is by letting them know what the help command is
-    await client.change_presence(activity=discord.Game('Try >>help'))
+    await client.change_presence(activity=discord.Game('Try >help'))
+
+@client2.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('@PracticeBot'):
+        await message.channel.send('Hello, I am PracticeBot! Please type in >help for more info on what I can do!')
 
 # now actually connect the bot
 client.run(config.get(section='Configuration', option='connection_token'),
