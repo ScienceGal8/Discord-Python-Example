@@ -17,22 +17,28 @@ class RPSCog:
     
     # rps command
     @commands.command()
-    async def rps(self, ctx):
+    async def rps(self, ctx, userChoice):
         # starts a rock paper scissors game
         await ctx.send("Starting RPS!")
-        # get user input... BUT HOW?!?!?!
         #temporary random testing stuffs
+        #randomNumber = random.randint(0,2)
+        #print(randomNumber)
+        #userChoice = choices[randomNumber]
+
+        # get user input... BUT HOW?!?!?!
+        #await ctx.send("Choose your fighter: Rock, Paper, or Scissors")
+        #print(ctx.kwargs)
+        #userChoice = ctx.message.content
+        print(userChoice)
+        userChoice = str(userChoice)
+        print(userChoice)
+        
+        # choose bot sign (rock, paper, or scissors)
         choices = ['rock','paper','scissors']
         randomNumber = random.randint(0,2)
-        print(randomNumber)
-        userChoice = choices[randomNumber]
-        #userChoice = prompt for input("Choose your fighter: Rock, Paper, or Scissors")
-        print(userChoice)
-        # choose bot sign (rock, paper, or scissors)
-        randomNumber = random.randint(0,2)
-        print(randomNumber)
+        #print(randomNumber)
         botChoice = choices[randomNumber]
-        await ctx.send("I choose... hm..." + botChoice)
+        await ctx.send("I choose... hm..." + str(botChoice))
         
         # figure out who won
         winDict = {
@@ -42,19 +48,21 @@ class RPSCog:
             }
         await ctx.send("...and the winner is...")
 
-        # Hardcoding for testing
-        userChoice = "rock"
-        botChoice = "scissors"
+        # Hardcoding for testing, deprecated until needed
+        #userChoice = "rock"
+        #botChoice = "scissors"
         
-        # report winner
-        print("finding winner")
-        lowerUserChoice = userChoice.lower()
+        # report winner- it's working!
+        #print("finding winner")
+        # making sure the user's choice is in the right format
+        lowerUserChoice = userChoice.lower
         print(lowerUserChoice)
-        didIWin = winDict.get(lowerUserChoice)
+        print(userChoice)
+        didIWin = winDict[lowerUserChoice]
         print(didIWin)
         if didIWin == botChoice:
             await ctx.send("Congrats, you win!")
-        elif str(lowerUserChoice) == botChoice:
+        elif lowerUserChoice == botChoice:
             await ctx.send("It's a tie!")
         else:
             await ctx.send("PracticeBot wins!")
