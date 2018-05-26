@@ -35,7 +35,7 @@ client = commands.Bot(command_prefix='>', description='https://github.com/UWB-AC
 client2 = discord.Client()
 
 # this is where extensions are added by default
-default_extensions = ['cogs.basic', 'cogs.rockpaperscissors', 'cogs.info']
+default_extensions = ['cogs.rockpaperscissors', 'cogs.MultiplayerRPS']
 
 
 if __name__ == '__main__':
