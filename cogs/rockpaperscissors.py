@@ -8,6 +8,9 @@ import random
 # and respond to changes in data as they happen
 
 # setup
+from typing import Any
+
+
 class RPSCog:
     def __init__(self, bot):
         self.bot = bot
@@ -55,7 +58,7 @@ class RPSCog:
         # report winner- it's working!
         #print("finding winner")
         # making sure the user's choice is in the right format
-        lowerUserChoice = userChoice.lower
+        lowerUserChoice = str(userChoice.lower())  # type: String
         print(lowerUserChoice)
         print(userChoice)
         didIWin = winDict[lowerUserChoice]
@@ -65,7 +68,7 @@ class RPSCog:
         elif lowerUserChoice == botChoice:
             await ctx.send("It's a tie!")
         else:
-            await ctx.send("PracticeBot wins!")
+            await ctx.send("Me! I, the bot, have won!")
         # end command
         await ctx.send("Thanks for playing")
 
